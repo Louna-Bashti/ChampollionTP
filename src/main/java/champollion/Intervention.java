@@ -9,17 +9,29 @@ public class Intervention {
     private boolean annulee = false;
     private int heureDebut;
     private TypeIntervention type;
+    private UE ue;
+    private Salle salle;
 
-    public Intervention(LocalDate debut, int duree, boolean annulee, int heureDebut, TypeIntervention type) {
+    public Intervention(LocalDate debut, int duree, boolean annulee, int heureDebut, TypeIntervention type, UE ue, Salle salle) {
         this.debut = debut;
         this.duree = duree;
         this.annulee = annulee;
         this.type = type;
         this.heureDebut= heureDebut;
+        this.ue = ue;
+        this.salle = salle;
     }
 
-    public boolean isAnnulee() {
-        return annulee;
+    public void isAnnulee() {
+        setAnnulee(true);
+    }
+
+    public UE getUe() {
+        return ue;
+    }
+
+    public void setUe(UE ue) {
+        this.ue = ue;
     }
 
     public void setAnnulee(boolean annulee) {

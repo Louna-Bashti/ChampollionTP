@@ -21,6 +21,10 @@ public class Enseignant extends Personne {
         this.service = service;
     }
 
+    public ArrayList<Intervention> getListeInterventions() {
+        return listeInterventions;
+    }
+
     public void setService() {
         int heuresCM = 0;
         int heuresTD = 0;
@@ -50,11 +54,17 @@ public class Enseignant extends Personne {
 
         int compteurHeures = 0;
         double compteurHeuresDouble = 0;
+        double compteurHeuresCM = 0;
+        double compteurHeuresTD = 0;
+        double compteurHeuresTP = 0;
 
         for (int i=0; i<listeEnseignements.size(); i++)
         {
-            compteurHeuresDouble = compteurHeuresDouble + listeEnseignements.get(i).getMyHeuresCM()*1.5+ listeEnseignements.get(i).getMyHeuresTD() + listeEnseignements.get(i).getMyHeuresTP()*0.75;
+            compteurHeuresCM = compteurHeuresCM + (listeEnseignements.get(i).getMyHeuresCM()*1.5) ;
+            compteurHeuresTD = compteurHeuresTD + (listeEnseignements.get(i).getMyHeuresTD());
+            compteurHeuresTP = compteurHeuresTP + (listeEnseignements.get(i).getMyHeuresTP()*0.75);
         }
+        compteurHeuresDouble = compteurHeuresCM + compteurHeuresTD + compteurHeuresTP;
         compteurHeures = (int)Math.round(compteurHeuresDouble);
         return compteurHeures;
 
@@ -74,15 +84,20 @@ public class Enseignant extends Personne {
         String intitule = ue.getIntitule();
         int compteurHeures = 0;
         double compteurHeuresDouble = 0;
+        double compteurHeuresCM = 0;
+        double compteurHeuresTD = 0;
+        double compteurHeuresTP = 0;
+
 
         for (int i=0; i<listeEnseignements.size(); i++)
         {
             if(listeEnseignements.get(i).getIntitule() == intitule) {
-                compteurHeuresDouble = compteurHeuresDouble + listeEnseignements.get(i).getMyHeuresCM()*1.5+ listeEnseignements.get(i).getMyHeuresTD() + listeEnseignements.get(i).getMyHeuresTP()*0.75;
-
+                compteurHeuresCM = compteurHeuresCM + (listeEnseignements.get(i).getMyHeuresCM()*1.5) ;
+                compteurHeuresTD = compteurHeuresTD + (listeEnseignements.get(i).getMyHeuresTD());
+                compteurHeuresTP = compteurHeuresTP + (listeEnseignements.get(i).getMyHeuresTP()*0.75);
             }
         }
-
+        compteurHeuresDouble = compteurHeuresCM + compteurHeuresTD + compteurHeuresTP;
         compteurHeures = (int)Math.round(compteurHeuresDouble);
         return compteurHeures;
 
@@ -122,6 +137,7 @@ public class Enseignant extends Personne {
         int servicetotal = getService().serviceTotal();
         if (servicetotal < 192) sousService = true;
         else sousService = false;
+        return sousService;
     }
 
     /**
